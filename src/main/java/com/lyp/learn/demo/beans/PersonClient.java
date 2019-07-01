@@ -13,5 +13,9 @@ public class PersonClient {
         ApplicationContext acx = new ClassPathXmlApplicationContext("spring-context.xml");
         Person person = (Person) acx.getBean("person1");
         System.out.println(person);
+
+        System.out.println();
+        Person person2 = (Person) acx.getBean("person2");
+        System.out.println(person2);
     }
 }

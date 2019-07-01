@@ -2,10 +2,14 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:p="http://www.springframework.org/schema/p"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-        http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+        http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util-4.3.xsd
         http://www.springframework.org/schema/context
-        http://www.springframework.org/schema/context/spring-context-4.1.xsd">
+        http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
         <!--
             配置 bean
@@ -81,6 +85,24 @@
         </property>
     </bean>
 
+    <!--
+        配置单例的集合bean,以供多个 bean 进行引用
+        需要导入 util 命名空间,需添加如下配置
+        (提示：在http://www.springframework.org/schema/util 可以看到xsd的版本)
+        xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util-4.3.xsd
+        ">
+    -->
+    <util:list id="carsList">
+        <ref bean="car1"/>
+        <ref bean="car2"/>
+    </util:list>
+
+    <bean id="boss2" class="com.lyp.learn.demo.beans.collections.Boss">
+        <property name="cars" ref="carsList"/>
+    </bean>
 
     <bean id="mother" class="com.lyp.learn.demo.beans.collections.Mother">
         <property name="hobbies">
@@ -148,6 +170,11 @@
                 <prop key="driver">jdbc.mysql.Driver</prop>
             </props>
         </property>
+    </bean>
+
+
+    <bean id="person2" class="com.lyp.learn.demo.beans.Person"
+          p:name="王五" p:age="28" p:car-ref="car1">
     </bean>
 
 </beans>

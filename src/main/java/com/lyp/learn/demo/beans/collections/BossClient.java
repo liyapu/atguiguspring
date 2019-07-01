@@ -8,6 +8,10 @@ public class BossClient {
         ApplicationContext acx = new ClassPathXmlApplicationContext("spring-context.xml");
         Boss boss = (Boss) acx.getBean("boss");
         System.out.println(boss);
+        System.out.println();
+
+        Boss boss2 = (Boss) acx.getBean("boss2");
+        System.out.println(boss2);
 
         System.out.println();
         Mother mother = (Mother) acx.getBean("mother");
