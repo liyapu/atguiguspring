@@ -15,7 +15,3 @@ target/
 .settings/
 */.settings/
 atguiguspring.iml
-
-# mac
-.DS_Store
-*/.DS_Store
