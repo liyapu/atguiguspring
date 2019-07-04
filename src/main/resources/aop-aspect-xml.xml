@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+        <!--配置bean-->
+        <bean id="arithmeticCalculator" class="com.lyp.learn.demo.aop.demo04.aop03.ArithmeticCalculatorImpl"/>
+
+        <!--配置切面bean-->
+        <bean id="loggerAspect" class="com.lyp.learn.demo.aop.demo04.aop03.LoggerAspect"/>
+
+        <bean id="validatorAspect" class="com.lyp.learn.demo.aop.demo04.aop03.ValidatorAspect"/>
+
+        <!--
+          配置AOP
+        -->
+        <aop:config>
+                <!--配置切面表达式-->
+                <aop:pointcut id="pointcutDefine"
+                   expression="execution( * com.lyp.learn.demo.aop.demo04.aop03.ArithmeticCalculator.*(..))"/>
+
+                <!--配置切面及通知-->
+                <aop:aspect ref="loggerAspect" order="2">
+                        <aop:before method="beforeMethod" pointcut-ref="pointcutDefine"/>
+                        <aop:after method="afterMethod" pointcut-ref="pointcutDefine"/>
+                        <aop:around method="aroundMethod" pointcut-ref="pointcutDefine"/>
+                        <aop:after-returning method="afterReturningMethod" pointcut-ref="pointcutDefine"
+                                             returning="result"/>
+                        <aop:after-throwing method="afterThrowMethod" pointcut-ref="pointcutDefine"
+                                            throwing="ex"/>
+                </aop:aspect>
+
+                <aop:aspect ref="validatorAspect" order="1">
+                        <aop:before method="beforeValid" pointcut-ref="pointcutDefine"/>
+                </aop:aspect>
+        </aop:config>
+</beans>
