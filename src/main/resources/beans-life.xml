@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="dog" class="com.lyp.learn.demo.beans.life.Dog"
+          init-method="myselfInit" destroy-method="myselfDestory" p:name="牧羊犬"></bean>
+
+    <bean class="com.lyp.learn.demo.beans.life.MyBeanPostProcessor"/>
+
+    <!--
+
+    -->
+    <bean id="car1" class="com.lyp.learn.demo.beans.factory.CarStaticFactory"
+       factory-method="getCar" >
+        <constructor-arg value="bmw"/>
+    </bean>
+
+    <!--配置实例工厂-->
+    <bean id="carFactory" class="com.lyp.learn.demo.beans.factory.CarInstanceFactory"/>
+    <!--配置实际的car-->
+    <bean id="car2" factory-bean="carFactory" factory-method="getCar">
+        <constructor-arg value="audi"/>
+    </bean>
+
+    <bean id="car3" class="com.lyp.learn.demo.beans.factory.CarFactoryBean">
+        <property name="name" value="benci"/>
+     </bean>
+</beans>

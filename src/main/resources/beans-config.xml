@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--
+        abstract : true 声明为抽象bean ,此bean不能被IOC容器实例化，即在容器中无法直接获取，
+        只能获取继承此bean的对象
+     -->
+    <bean id="baseAddress" class="com.lyp.learn.demo.beans.relations.Address"
+        p:country="中国" p:province="河南" abstract="true">
+    </bean>
+
+    <bean id="address1" parent="baseAddress" p:city="商丘"></bean>
+
+    <bean id="address2" parent="baseAddress" p:province="山东" p:city="威海"></bean>
+
+    <bean id="address" class="com.lyp.learn.demo.beans.relations.Address"
+          p:country="中国" p:province="河南" p:city="商丘" scope="prototype"/>
+
+
+    <!-- 自动装配: 只声明 bean, 而把 bean 之间的关系交给 IOC 容器来完成 -->
+    <!--
+        byType: 根据类型进行自动装配. 但要求 IOC 容器中只有一个类型对应的 bean, 若有多个则无法完成自动装配.
+        byName: 若属性名和某一个 bean 的 id 名一致, 即可完成自动装配. 若没有 id 一致的, 则无法完成自动装配
+    -->
+    <bean id="car" class="com.lyp.learn.demo.beans.Car">
+        <constructor-arg value="上海"/>
+        <constructor-arg value="奥迪"/>
+        <constructor-arg value="240"/>
+    </bean>
+
+    <bean  id ="person1" class="com.lyp.learn.demo.beans.Person"
+           p:name="张三" p:age="22" autowire="byType"/>
+
+    <bean id="person2" class="com.lyp.learn.demo.beans.Person"
+          p:name="李四" autowire="byName"/>
+
+    <bean id="person3" class="com.lyp.learn.demo.beans.Person"
+          p:name="王五" autowire="byName" depends-on="car" p:car-ref="car"/>
+</beans>

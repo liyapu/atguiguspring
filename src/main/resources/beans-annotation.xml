@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-4.3.xsd
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+
+    <!--
+      扫描组件,
+      默认扫描base-package 包下的及其子包下的 @component,@Controller,@Service,@Repository
+    <context:component-scan base-package="com.lyp.learn.demo.beans.annotation" />
+     -->
+
+    <!--
+        如果希望扫描特定的类，那么可以使用 resouce-pattern 属性过滤出特定的类：
+
+        默认情况下 resource-pattern 属性的值为  **./*.class, 即基类包里所有的类 。
+        下面的设置，让它仅扫描基类包中的 controller 子包下的类,
+        即com.lyp.learn.demo.beans.annotation.controller包中的类
+
+        resource-pattern 属性会按照资源名称对基类包中的类进行过滤。
+
+        只扫描 base-package下的子包controller下的类
+    <context:component-scan base-package="com.lyp.learn.demo.beans.annotation"
+                            resource-pattern="controller/*.class">
+    </context:component-scan>
+    -->
+
+    <!--
+        排除base-package下的Controller，
+        只扫描@Component,@Service,@Repository
+
+    <context:component-scan base-package="com.lyp.learn.demo.beans.annotation">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+      -->
+
+    <!--
+        只扫描controller包下的类
+        下面是错误配置，base-package下的包默认组件都扫描进来了
+
+    <context:component-scan base-package="com.lyp.learn.demo.beans.annotation">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+     -->
+
+    <!--
+        只扫描controller包下的类
+        正确配置，指定 use-default-filters="false"
+
+     -->
+    <context:component-scan base-package="com.lyp.learn.demo.beans.annotation" use-default-filters="false">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+
+</beans>

@@ -17,5 +17,9 @@ public class PersonClient {
         System.out.println();
         Person person2 = (Person) acx.getBean("person2");
         System.out.println(person2);
+
+        System.out.println();
+        Person person3 = (Person) acx.getBean("person3");
+        System.out.println(person3);
     }
 }

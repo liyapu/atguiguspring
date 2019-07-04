@@ -177,4 +177,9 @@
           p:name="王五" p:age="28" p:car-ref="car1">
     </bean>
 
+    <bean id="person3" class="com.lyp.learn.demo.beans.Person"
+          p:name="钱六" p:age="#{T(java.lang.Integer).MAX_VALUE}" p:car="#{car1}">
+    </bean>
+
+
 </beans>
