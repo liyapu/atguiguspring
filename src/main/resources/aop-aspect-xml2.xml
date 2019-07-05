@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+        <!--配置bean
+         已知的不能修改的接口实现类、自定义接口实现类添加为bean
+        -->
+        <bean id="li" class="com.lyp.learn.demo.aop.demo04.aop04.Li"/>
+        <bean id="doSomething" class="com.lyp.learn.demo.aop.demo04.aop04.DoSomething"/>
+
+
+        <aop:config>
+                <aop:aspect>
+                        <!--
+                        types-matching的值 是不能修改的接口实现类
+                        implement-interface的值是自定义接口名
+                        default-impl是自定义接口的实现类
+                        -->
+                        <aop:declare-parents
+                                types-matching="com.lyp.learn.demo.aop.demo04.aop04.Li"
+                                implement-interface="com.lyp.learn.demo.aop.demo04.aop04.Add"
+                                default-impl="com.lyp.learn.demo.aop.demo04.aop04.DoSomething"/>
+                </aop:aspect>
+        </aop:config>
+
+</beans>

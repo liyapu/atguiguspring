@@ -1,7 +1,6 @@
 package com.lyp.learn.demo.beans;
 
 
-import org.junit.Test;
 
 /**
  * @Author: liyapu
@@ -10,8 +9,4 @@ import org.junit.Test;
  */
 class HelloWorldTest {
 
-    @Test
-    void hello() {
-
-    }
 }
