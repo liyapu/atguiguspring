@@ -1,8 +1,9 @@
-package com.lyp.learn.demo.tx.anno;
+package com.lyp.learn.demo.tx.xml;
 
-import com.lyp.learn.demo.tx.anno.dao.BookShopDao;
-import com.lyp.learn.demo.tx.anno.service.BookShopService;
-import com.lyp.learn.demo.tx.anno.service.CashierService;
+
+import com.lyp.learn.demo.tx.xml.dao.BookShopDao;
+import com.lyp.learn.demo.tx.xml.service.BookShopService;
+import com.lyp.learn.demo.tx.xml.service.CashierService;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -17,7 +18,7 @@ public class SpringTransactionTest {
     CashierService cashierService = null;
 
     {
-        acx = new ClassPathXmlApplicationContext("tx-anno.xml");
+        acx = new ClassPathXmlApplicationContext("tx-xml.xml");
         bookShopDao = acx.getBean(BookShopDao.class);
         bookShopService = acx.getBean(BookShopService.class);
         cashierService = acx.getBean(CashierService.class);

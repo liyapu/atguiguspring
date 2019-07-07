@@ -39,7 +39,6 @@
 
         事务管理器 id 若是transactionManager，tx:annotation-driven中的
         transaction-manager="transactionManager" 配置可以省略，会自动配置
-
     -->
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
